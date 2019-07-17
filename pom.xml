@@ -17,5 +17,12 @@
   </dependencies>
   <build>
     <finalName>hello</finalName>
+    <plugins>
+      <plugin>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-server</artifactId>
+          <version>9.4.19.v20190610</version>
+      </plugin>
+    </plugins>
   </build>
 </project>
