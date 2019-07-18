@@ -7,6 +7,12 @@ public class Account {
 	private String password;
 	private String nickName;
 	private String pic;
+	public Account() {}
+	public Account(String email, String password, String nickName) {
+		this.email = email;
+		this.password = password;
+		this.nickName = nickName;
+	}
 	public Integer getAccountId() {
 		return accountId;
 	}

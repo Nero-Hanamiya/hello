@@ -16,7 +16,25 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>AccountServlet</servlet-name>
+  	<url-pattern>/accounts</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Account2Servlet</servlet-name>
+  	<servlet-class>com.hwadee.hello.servlet.Account2Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Account2Servlet</servlet-name>
   	<url-pattern>/account</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<servlet-class>com.hwadee.hello.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<url-pattern>/register</url-pattern>
   </servlet-mapping>
   
   

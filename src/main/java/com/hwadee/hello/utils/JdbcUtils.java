@@ -16,9 +16,9 @@ public class JdbcUtils {
 		dataSource = new ComboPooledDataSource();
 		dataSource.setUser("root");
 		dataSource.setPassword("123654");
-		//jdbc:postgresql://localhost:5432/test
+							 //jdbc:postgresql://localhost:5432/test
 		dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/database");
-		try {
+		try {						  //org.postgresql.Driver
 			dataSource.setDriverClass("com.mysql.jdbc.Driver");
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();

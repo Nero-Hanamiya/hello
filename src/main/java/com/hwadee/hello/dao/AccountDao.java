@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.hwadee.hello.domain.Account;
 import com.hwadee.hello.utils.JdbcUtils;
@@ -36,9 +37,31 @@ public class AccountDao {
 			e.printStackTrace();
 			throw new RuntimeException( e );
 		}
-		
-		
 	}
+	
+	public long insert( Account account ) throws SQLException {
+		String sql = "INSERT INTO ACCOUNT(EMAIL, PASSWORD, NICK_NAME) VALUES(?,?,?)";
+		
+		try {
+			return query.insert(sql, new ScalarHandler<Long>(1), account.getEmail(), account.getPassword(), account.getNickName());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int delete( int accountId ) throws SQLException {
+		String sql = "DELETE FROM ACCOUNT WHERE ACCOUNT_ID = ?";
+		try {
+			return query.execute(sql, accountId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	
 
 }
