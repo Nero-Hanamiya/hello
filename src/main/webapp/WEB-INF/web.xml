@@ -26,7 +26,7 @@
    -->
   <filter-mapping>
   	<filter-name>LoginFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
+  	<url-pattern>/u/*</url-pattern>
   </filter-mapping>
   
   <servlet>
@@ -44,7 +44,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>AccountServlet</servlet-name>
-  	<url-pattern>/accounts</url-pattern>
+  	<url-pattern>/u/accounts</url-pattern>
   </servlet-mapping>
   
   <servlet>

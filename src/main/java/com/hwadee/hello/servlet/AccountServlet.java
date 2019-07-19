@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,6 +60,24 @@ public class AccountServlet extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		
+		Cookie [] cookies = req.getCookies();
+		
+		Cookie cookie = null;
+		for(Cookie c : cookies) {
+			if( c.getName().equals("sessionid") ) {
+				cookie = c;
+				break;
+			}
+		}
+		if( null == cookie ) {
+			cookie = new Cookie("sessionid", UUID.randomUUID().toString());
+			cookie.setMaxAge( 60 * 60 * 24 );
+			//cookie.setPath("");
+			resp.addCookie(cookie);
+		}
+		
+		
+		
 		Enumeration<String> names = req.getHeaderNames();
 		out.println("<pre>");
 		while( names.hasMoreElements() ) {
@@ -88,7 +108,7 @@ public class AccountServlet extends HttpServlet {
 			out.println("</td>");
 			out.print("<td>");
 			//<a href="/account?accountId=7">delete</a>
-			out.print("<a href=\"/account?accountId=" + account.getAccountId() + "\">delete</a>");
+			out.print("<a href=\"/account?accountId=" + account.getAccountId() + "&sessionid=123\">delete</a>");
 			out.println("</td>");
 			out.print("</tr>");
 		}

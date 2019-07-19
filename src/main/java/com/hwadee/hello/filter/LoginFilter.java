@@ -9,6 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.hwadee.hello.domain.Account;
 
 public class LoginFilter implements Filter {
 
@@ -24,14 +28,17 @@ public class LoginFilter implements Filter {
 			throws IOException, ServletException {
 		
 		HttpServletRequest req = (HttpServletRequest)request;
-		System.out.println( "URI=" + req.getRequestURI() );
+		HttpServletResponse resp = (HttpServletResponse)response;
 		
-		System.out.println("doFilter===>before");
+		//req.getRequestURI()
 		
-		
-		chain.doFilter(req, response);
-		//response.setCharacterEncoding("UTF-8");
-		System.out.println("doFilter===>after");
+		HttpSession session = req.getSession();
+		Account account = (Account)session.getAttribute("account");
+		if( null != account ) {
+			chain.doFilter(request, response);
+		} else {
+			resp.sendRedirect("/login.html");
+		}
 	}
 
 	@Override
