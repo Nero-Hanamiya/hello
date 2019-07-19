@@ -18,29 +18,19 @@ public class Account2Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String accountId = req.getParameter("accountId");
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.println("<!DOCTYPE html>            ");
-		out.println("<html lang=\"en\">");
-		out.println("<head>");
-		out.println("	<meta charset=\"UTF-8\">");
-		out.println("	<title>Document</title>");
-		out.println("</head>");
-		out.println("<body>");
 		try {
 			accountDao.delete( Integer.valueOf(accountId) );
-			out.println( "<h1>success</h1>" );
-			out.println("<a href=\"/accounts\">/accounts</a>");
+			//resp.sendRedirect("/accounts");
+			
+			resp.setStatus(302);
+			resp.setHeader("Location", "/accounts");
+			
 		} catch (NumberFormatException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			out.println( "<h1 style=\"color:red\">error</h1>" );
-			out.println("<a href=\"/accounts\">/accounts</a>");
+			resp.sendRedirect("/NewFile.html");
 		}
-		out.println("</body>");
-		out.println("</html>");
-		out.flush();
-		out.close();
+		
 	}
 	
 	

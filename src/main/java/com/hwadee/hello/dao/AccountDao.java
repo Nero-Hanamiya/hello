@@ -27,6 +27,17 @@ public class AccountDao {
 		}
 	}
 	
+	public Account findByEmail(String email) {
+		String sql = "SELECT ACCOUNT_ID ACCOUNTID, EMAIL, PASSWORD, NICK_NAME NICKNAME, PIC FROM ACCOUNT WHERE EMAIL = ?";
+		try {
+			return query.query(sql, new BeanHandler<Account>(Account.class), email);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException( e );
+		}
+	}
+	
 	public List<Account> findAll(){
 		String sql = "SELECT ACCOUNT_ID ACCOUNTID, EMAIL, PASSWORD, NICK_NAME NICKNAME, PIC FROM ACCOUNT";
 		
