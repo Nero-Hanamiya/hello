@@ -2,8 +2,10 @@ package com.hwadee.hello.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +17,38 @@ import com.hwadee.hello.domain.Account;
 public class AccountServlet extends HttpServlet {
 	
 	private AccountDao accountDao = new AccountDao();
+	
+	
+	
+
+	@Override
+	public void destroy() {
+		
+	}
+
+
+
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("init");
+		String test = config.getInitParameter("test");
+		String test2 = config.getInitParameter("test2");
+		
+		///Integer.parseInt("1");
+		
+		System.out.println("test=" + test + "\ntest2=" + test2);
+	}
+
+
+
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Account> accounts = accountDao.findAll();
-		
-		resp.setContentType("text/html");
+		System.out.println("AccountServlet===>doGet");
+		resp.setContentType("text/html;charset=UTF-8");
+		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
 		out.println("<!DOCTYPE html>            ");
 		out.println("<html lang=\"en\">");
@@ -29,6 +57,20 @@ public class AccountServlet extends HttpServlet {
 		out.println("	<title>Document</title>");
 		out.println("</head>");
 		out.println("<body>");
+		
+		Enumeration<String> names = req.getHeaderNames();
+		out.println("<pre>");
+		while( names.hasMoreElements() ) {
+			String name = names.nextElement();
+			out.print("<strong>");
+			out.print( name );
+			out.print("</strong>");
+			out.print("<span>");
+			out.print( req.getHeader( name ) );
+			out.println("</span>");
+		}
+		out.println("</pre>");
+		
 		out.println("<table>");
 		for( Account account : accounts ) {
 			out.println("<tr>");
