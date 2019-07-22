@@ -11,50 +11,38 @@
   </welcome-file-list>
   
   <filter>
+  	<filter-name>HiddenHttpMethodFilter</filter-name>
+  	<filter-class>com.hwadee.hello.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+  	<filter-name>HiddenHttpMethodFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+	<!-- 
+  <filter>
   	<filter-name>LoginFilter</filter-name>
   	<filter-class>com.hwadee.hello.filter.LoginFilter</filter-class>
-  	<init-param>
-  		<param-name>test</param-name>
-  		<param-value>这是过滤器参数测试</param-value>
-  	</init-param>
   </filter>
-  <!-- 
-  <filter-mapping>
-  	<filter-name>LoginFilter</filter-name>
-  	<url-pattern>/accounts</url-pattern>
-  </filter-mapping>
-   -->
+
   <filter-mapping>
   	<filter-name>LoginFilter</filter-name>
   	<url-pattern>/u/*</url-pattern>
   </filter-mapping>
+	 -->
   
   <servlet>
   	<servlet-name>AccountServlet</servlet-name>
   	<servlet-class>com.hwadee.hello.servlet.AccountServlet</servlet-class>
-  	<init-param>
-  		<param-name>test</param-name>
-  		<param-value>这是测试</param-value>
-  	</init-param>
-  	<init-param>
-  		<param-name>test2</param-name>
-  		<param-value>这也是测试</param-value>
-  	</init-param>
   	<load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
   	<servlet-name>AccountServlet</servlet-name>
-  	<url-pattern>/u/accounts</url-pattern>
+  	<url-pattern>/u/account</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-  	<servlet-name>Account2Servlet</servlet-name>
-  	<servlet-class>com.hwadee.hello.servlet.Account2Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>Account2Servlet</servlet-name>
-  	<url-pattern>/account</url-pattern>
-  </servlet-mapping>
+  
   
   <servlet>
   	<servlet-name>RegisterServlet</servlet-name>

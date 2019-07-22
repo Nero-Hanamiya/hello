@@ -73,6 +73,17 @@ public class AccountDao {
 		}
 	}
 	
+	public int update( Account account ) throws SQLException {
+		String sql = "UPDATE ACCOUNT SET EMAIL = ?, NICK_NAME = ? WHERE ACCOUNT_ID = ?";
+		try {
+			return query.update(sql, account.getEmail(), account.getNickName(), account.getAccountId());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	
 
 }

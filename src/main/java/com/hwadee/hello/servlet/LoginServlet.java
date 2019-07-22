@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("account", account);
 			
-			resp.sendRedirect("/accounts");
+			resp.sendRedirect("/u/accounts");
 		} else {
 			resp.sendRedirect("/login.html");
 		}
