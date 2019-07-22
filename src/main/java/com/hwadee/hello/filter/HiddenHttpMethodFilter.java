@@ -1,6 +1,7 @@
 package com.hwadee.hello.filter;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -25,7 +26,6 @@ public class HiddenHttpMethodFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		String method = req.getParameter("_method");
 		if(null != method && "PUT,DELETE".contains( method.toUpperCase() ) ) {
-			
 			req = new MyHttpServletRequest(req, method.toUpperCase());
 		}
 		chain.doFilter(req, response);
@@ -54,6 +54,15 @@ class MyHttpServletRequest extends HttpServletRequestWrapper {
 		// TODO Auto-generated method stub
 		return this.method;
 	}
+
+	/*
+	 * @Override public String getParameter(String name) { // TODO Auto-generated
+	 * method stub String value = super.getParameter(name);
+	 * 
+	 * try { return new String(value.getBytes("iso-8859-1"), "utf-8"); } catch
+	 * (UnsupportedEncodingException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } return null; }
+	 */
 	
 	
 	

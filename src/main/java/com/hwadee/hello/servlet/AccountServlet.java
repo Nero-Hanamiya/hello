@@ -68,6 +68,7 @@ public class AccountServlet extends HttpServlet {
 		String accountId = req.getParameter("accountId");
 		String email = req.getParameter("email");
 		String nickName = req.getParameter("nickName");
+		//nickName = new String( nickName.getBytes("iso-8859-1"), "utf-8" );
 		try {
 			Account account = new Account(email, null, nickName);
 			account.setAccountId(Integer.parseInt(accountId));

@@ -48,6 +48,13 @@
 			<artifactId>commons-dbutils</artifactId>
 			<version>1.7</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.2</version>
+		</dependency>
+
+		
 	</dependencies>
 	<build>
 		<finalName>hello</finalName>
@@ -61,6 +68,12 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+				<includes>
+					<include>*/**.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/src</directory>
 				<includes>
 					<include>*/**.xml</include>
 				</includes>
