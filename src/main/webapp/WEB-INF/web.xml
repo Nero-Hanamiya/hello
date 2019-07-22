@@ -20,6 +20,7 @@
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
+	<!-- 
   <filter>
   	<filter-name>LoginFilter</filter-name>
   	<filter-class>com.hwadee.hello.filter.LoginFilter</filter-class>
@@ -29,6 +30,7 @@
   	<filter-name>LoginFilter</filter-name>
   	<url-pattern>/u/*</url-pattern>
   </filter-mapping>
+	 -->
   
   <servlet>
   	<servlet-name>AccountServlet</servlet-name>

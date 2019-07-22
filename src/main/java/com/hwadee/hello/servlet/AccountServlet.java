@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,8 @@ public class AccountServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		
 		String id = req.getParameter("id");
 		Account account = accountDao.findById(Integer.parseInt(id));
 		req.setAttribute("account", account);
@@ -60,6 +63,8 @@ public class AccountServlet extends HttpServlet {
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
 		String accountId = req.getParameter("accountId");
 		String email = req.getParameter("email");
 		String nickName = req.getParameter("nickName");

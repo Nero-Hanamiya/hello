@@ -25,6 +25,7 @@ public class HiddenHttpMethodFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		String method = req.getParameter("_method");
 		if(null != method && "PUT,DELETE".contains( method.toUpperCase() ) ) {
+			
 			req = new MyHttpServletRequest(req, method.toUpperCase());
 		}
 		chain.doFilter(req, response);
